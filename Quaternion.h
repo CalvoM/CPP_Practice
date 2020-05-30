@@ -11,8 +11,11 @@ class Quaternion{
         Quaternion();
         Quaternion(T_ c,T_ i, T_ j, T_ k):i(i),j(j),k(k),c(c){}
         Quaternion operator +(const Quaternion<T_> &q);
+        Quaternion operator+=(const Quaternion<T_> &q);
         Quaternion operator -(const Quaternion<T_> &q);
+        Quaternion operator-=(const Quaternion<T_> &q);
         Quaternion operator *(const Quaternion<T_> &q);
+        Quaternion operator *=(const Quaternion<T_> &q);
         Quaternion operator /(const Quaternion<T_> &q);
         friend std::ostream& operator << <>(std::ostream& out,const Quaternion<T_> &q);
         friend std::istream& operator >> <>(std::istream& in, Quaternion<T_> &q);
