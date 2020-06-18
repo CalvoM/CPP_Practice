@@ -64,6 +64,34 @@ void NodeList<_T>::insert(int index,_T el){
     }
     this->m_count++;
 }
+template <typename _T>
+void NodeList<_T>::del(int index) {
+  if (index >= this->m_count or index < 0) {
+    std::cout << "Check your index!" << std::endl;
+    return;
+  }
+  if(this->m_count == 0){
+      std::cout<<"Please add first"<<std::endl;
+      return;
+  }
+  if (index == 0) {  // if remove from first position
+  Node<_T> *tmp = this->m_head;
+  if(m_head == m_tail){// one node in list
+      m_tail = m_head = nullptr;
+  }else{
+    this->m_head = this->m_head->next;
+  }
+  } else if (index == (this->m_count - 1)) {  // if add to last position
+    
+  } else {
+    Node<_T> *tmp = this->m_head;
+    int _index = 0;
+    while (_index++ != (index - 1)) {  // Get the one just before
+      tmp = tmp->next;
+    }
+  }
+  this->m_count--;
+}
 template class NodeList<const char*>;
 template class Node<const char*>;
 template class NodeList<int>;
