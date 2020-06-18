@@ -17,19 +17,17 @@ bool NodeList<_T>::is_empty(){
 }
 template <typename _T>
 void NodeList<_T>::addToFront(_T el){
-    Node<_T>* tmp = new Node<_T>(el,this->m_head);
-    this->m_head = tmp;
-    if(this->m_tail == nullptr){//If first node in List
-        this->m_tail = this->m_head;
+    this->m_head = new Node<_T>(el, this->m_head);
+  if (this->m_tail == nullptr) {  // If first node in List
+    this->m_tail = this->m_head;
     }
     this->m_count++;
 }
 template <typename _T>
 void NodeList<_T>::append(_T el){
     if(!this->is_empty()){//if list of nodes exists
-    Node<_T> *tmp = new Node<_T>(el);
-     this->m_tail->next = tmp;
-     this->m_tail = this->m_tail->next;
+    this->m_tail->next = new Node<_T>(el);
+      this->m_tail = this->m_tail->next;
     }else{
         this->m_tail = this->m_head = new Node<_T>(el); 
     }
@@ -59,8 +57,8 @@ void NodeList<_T>::insert(int index,_T el){
     while(_index++!=(index-1)){ //Get the one just before
         tmp = tmp->next;
     }
-    Node<_T> *_tmp = new Node<_T>(el,tmp->next);
-    tmp->next = _tmp;
+
+    tmp->next = new Node<_T>(el, tmp->next);
     }
     this->m_count++;
 }
@@ -70,25 +68,36 @@ void NodeList<_T>::del(int index) {
     std::cout << "Check your index!" << std::endl;
     return;
   }
+
   if(this->m_count == 0){
       std::cout<<"Please add first"<<std::endl;
       return;
   }
+
   if (index == 0) {  // if remove from first position
-  Node<_T> *tmp = this->m_head;
+
   if(m_head == m_tail){// one node in list
       m_tail = m_head = nullptr;
-  }else{
+  } else {
     this->m_head = this->m_head->next;
   }
   } else if (index == (this->m_count - 1)) {  // if add to last position
-    
+    Node<_T> *tmp = this->m_head;
+    while(tmp->next != this->m_tail){
+        tmp = tmp->next;
+    }
+    delete this->m_tail;//Delete the last node
+    this->m_tail = tmp;
+    this->m_tail->next = nullptr;
   } else {
     Node<_T> *tmp = this->m_head;
     int _index = 0;
     while (_index++ != (index - 1)) {  // Get the one just before
       tmp = tmp->next;
     }
+    std::cout<<tmp->data<<"\n\r";
+    tmp->next = tmp->next->next;
+    //delete tmp->next;
   }
   this->m_count--;
 }

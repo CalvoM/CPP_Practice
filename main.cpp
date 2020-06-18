@@ -18,6 +18,12 @@ int main(){
     list.insert(6, "Swrry");
     list.insert(1, "Ahem");
     list.insert(7, "Listen Up");
+    std::cout << list<<"\n\r";
+    list.del(1);
+    std::cout << list << "\n\r";
+    list.del(1);
+    std::cout << list << "\n\r";
+    list.del(1);
     if (list.is_empty()) {
       std::cout << "List is empty" << std::endl;
     } else {
