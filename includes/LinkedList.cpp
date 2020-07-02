@@ -91,13 +91,15 @@ void NodeList<_T>::del(int index) {
     this->m_tail->next = nullptr;
   } else {
     Node<_T> *tmp = this->m_head;
+    Node<_T> *_tmp = this->m_head->next;
     int _index = 0;
     while (_index++ != (index - 1)) {  // Get the one just before
       tmp = tmp->next;
+      _tmp = _tmp->next;
     }
-    std::cout<<tmp->data<<"\n\r";
-    tmp->next = tmp->next->next;
-    //delete tmp->next;
+    std::cout<<tmp->data<<_tmp->data<<std::endl;
+    tmp->next = _tmp->next;
+    //delete _tmp;
   }
   this->m_count--;
 }
